@@ -26,6 +26,14 @@
         </li><!-- End F.A.Q Page Nav -->
 
         <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('users*') ? 'active' : 'collapsed' }}"
+                href="{{ route('users.index') }}">
+                <i class="bi bi-person"></i>
+                <span>Users</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('barang*') ? 'active' : 'collapsed' }}"
                 href="{{ route('barang.index') }}">
                 <i class="bi bi-card-list"></i>
@@ -34,12 +42,13 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link {{ request()->routeIs('users*') ? 'active' : 'collapsed' }}"
-                href="{{ route('users.index') }}">
-                <i class="bi bi-person"></i>
-                <span>Users</span>
+            <a class="nav-link {{ request()->routeIs('pembelian*') ? 'active' : 'collapsed' }}"
+                href="{{ route('pembelian.index') }}">
+                <i class="bi bi-card-list"></i>
+                <span>Pembelian</span>
             </a>
         </li>
+
 
 
 
