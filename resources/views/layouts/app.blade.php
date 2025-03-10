@@ -69,8 +69,8 @@
             }
         }
     </script>
-    !--Vendor JS Files--
-    <script src="{{ url('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>w
+    <!--Vendor JS Files-->
+    <script src="{{ url('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url('assets/vendor/chart.js/chart.umd.js') }}"></script>
     <script src="{{ url('assets/vendor/echarts/echarts.min.js') }}"></script>

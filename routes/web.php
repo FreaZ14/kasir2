@@ -5,6 +5,8 @@ use App\Models\Blog;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\DetailPembelianController;
+use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UsersController;
 
@@ -44,6 +46,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('pembelian', PembelianController::class);
 
+
+    Route::resource('penjualan', PenjualanController::class);
     Route::resource('users', UsersController::class);
 });
 

@@ -49,6 +49,13 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('penjualan*') ? 'active' : 'collapsed' }}"
+                href="{{ route('penjualan.index') }}">
+                <i class="bi bi-cart"></i>
+                <span>Penjualan</span>
+            </a>
+        </li>
 
 
 

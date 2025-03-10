@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <h2>Daftar Pembelian</h2>
-        <a href="{{ route('pembelian.create') }}" style="margin-bottom: 40px;" class="btn btn-primary">Tambah Pembelian</a>
+        <h2>Daftar Penjualan</h2>
+        <a href="{{ route('penjualan.create') }}" style="margin-bottom: 40px;" class="btn btn-primary">Tambah Penjualan</a>
 
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
@@ -20,22 +20,22 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($pembelian as $item)
+                @foreach ($penjualan as $item)
                     <tr class="text-center">
                         <td>{{ $item->no_faktur }}</td>
                         <td>{{ $item->tanggal }}</td>
                         <td>{{ $item->jumlah }}</td>
                         <td>{{ number_format($item->total, 0, ',', '.') }}</td>
                         <td>
-                            <a href="{{ route('pembelian.show', $item->id) }}" class="btn bit btn-info btn-sm">Detail</a>
+                            <a href="{{ route('penjualan.show', $item->id) }}" class="btn bit btn-info btn-sm">Detail</a>
 
-                            <a href="{{ route('pembelian.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{{ route('penjualan.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
-                            <form action="{{ route('pembelian.destroy', $item->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('penjualan.destroy', $item->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Hapus pembelian ini?')">Hapus</button>
+                                    onclick="return confirm('Hapus penjualan ini?')">Hapus</button>
                             </form>
                         </td>
                     </tr>

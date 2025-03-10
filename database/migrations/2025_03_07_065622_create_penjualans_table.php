@@ -13,7 +13,7 @@ class CreatePenjualansTable extends Migration
      */
     public function up()
     {
-        Schema::create('penjualans', function (Blueprint $table) {
+        Schema::create('penjualan', function (Blueprint $table) {
             $table->id();
             $table->string('no_faktur');
             $table->date('tanggal');

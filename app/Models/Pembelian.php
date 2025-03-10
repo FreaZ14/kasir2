@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\DetailPembelian;
 
 class Pembelian extends Model
 {
@@ -17,4 +18,14 @@ class Pembelian extends Model
         'jumlah',
         'total',
     ];
+
+    public function detail_pembelian()
+    {
+        return $this->hasMany(DetailPembelian::class);
+    }
+
+    public function barang()
+    {
+        return $this->belongsToMany(Barang::class);
+    }
 }
