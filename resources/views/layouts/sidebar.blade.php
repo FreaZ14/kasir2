@@ -28,7 +28,7 @@
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('users*') ? 'active' : 'collapsed' }}"
                 href="{{ route('users.index') }}">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-people"></i>
                 <span>Users</span>
             </a>
         </li>
@@ -36,7 +36,7 @@
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('barang*') ? 'active' : 'collapsed' }}"
                 href="{{ route('barang.index') }}">
-                <i class="bi bi-card-list"></i>
+                <i class="bi bi-box"></i>
                 <span>Barang</span>
             </a>
         </li>
@@ -44,7 +44,7 @@
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('pembelian*') ? 'active' : 'collapsed' }}"
                 href="{{ route('pembelian.index') }}">
-                <i class="bi bi-card-list"></i>
+                <i class="bi bi-basket2"></i>
                 <span>Pembelian</span>
             </a>
         </li>

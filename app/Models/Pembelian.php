@@ -16,6 +16,7 @@ class Pembelian extends Model
         'no_faktur',
         'tanggal',
         'jumlah',
+        'qty',
         'total',
     ];
 

@@ -15,9 +15,13 @@ class DetailPembelian extends Model
 
     protected $fillable = [
         'pembelian_id',
+        'no_faktur',
         'barang_id',
+        'tanggal',
+        'jumlah',
         'qty',
         'harga',
+        'total',
         'subtotal'
     ];
 

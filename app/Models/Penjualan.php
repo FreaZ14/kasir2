@@ -15,6 +15,7 @@ class Penjualan extends Model
         'no_faktur',
         'tanggal',
         'jumlah',
+        'qty',
         'total',
     ];
 

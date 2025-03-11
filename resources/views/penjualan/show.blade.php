@@ -3,12 +3,12 @@
 @section('content')
     <div class="container">
         <div style="display: flex; flex-direction: column; align-items: center">
-            <h2>Detail Pembelian</h2>
-            <a href="{{ route('pembelian.index') }}" class="btn btn-secondary">Kembali</a>
+            <h2>Detail Penjualan</h2>
+            <a href="{{ route('penjualan.index') }}" class="btn btn-secondary">Kembali</a>
             <table class="table table-bordered table-striped table-responsive mt-3">
                 <thead>
                     <tr class="text-center">
-                        <th>Pembelian Id</th>
+                        <th>penjualan Id</th>
                         <th>Nama Barang</th>
                         <th>Qty</th>
                         <th>Harga</th>
@@ -16,9 +16,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pembelian->detail_pembelian as $item)
+                    @foreach ($penjualan->detail_penjualan as $item)
                         <tr class="text-center">
-                            <td>{{ $item->pembelian_id }}</td>
+                            <td>{{ $item->penjualan_id }}</td>
                             <td>{{ $item->barang->nama }}</td>
                             <td>{{ $item->qty }}</td>
                             <td>{{ $item->harga }}</td>

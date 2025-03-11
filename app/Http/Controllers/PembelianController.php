@@ -27,6 +27,7 @@ class PembelianController extends Controller
         $pembelian->load('detail_pembelian.barang');
         return view('pembelian.show', compact('pembelian'));
     }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -80,47 +81,88 @@ class PembelianController extends Controller
         $request->validate([
             'no_faktur' => 'required|unique:pembelian,no_faktur,' . $pembelian->id,
             'tanggal' => 'required|date',
-            'jumlah' => 'required|integer',
-            'total' => 'required|numeric'
+            'barang_id' => 'required|array',
+            'qty' => 'required|array',
+            'harga' => 'required|array',
+            'total' => 'required'
         ]);
 
-        $total = $request->jumlah * $request->total;
-        $pembelian->update([
-            'no_faktur' => $request->no_faktur,
-            'tanggal' => $request->tanggal,
-            'jumlah' => $request->jumlah,
-            'total' => $total
-        ]);
+        $total = 0;
+        $existingDetails = $pembelian->detail_pembelian->keyBy('barang_id');
 
-        if (isset($request->barang_id)) {
-            foreach ($request->barang_id as $key => $barang_id) {
-                $detailPembelian = $pembelian->detail_pembelian->where('barang_id', $barang_id)->first();
-                if ($detailPembelian) {
-                    $detailPembelian->update([
-                        'qty' => $request->qty[$key],
-                        'harga' => $request->harga[$key],
-                        'subtotal' => $request->qty[$key] * $request->harga[$key]
-                    ]);
-                } else {
-                    DetailPembelian::create([
-                        'pembelian_id' => $pembelian->id,
-                        'barang_id' => $barang_id,
-                        'qty' => $request->qty[$key],
-                        'harga' => $request->harga[$key],
-                        'subtotal' => $request->qty[$key] * $request->harga[$key]
-                    ]);
-                }
+
+        foreach ($existingDetails as $detail) {
+            $barang = Barang::find($detail->barang_id);
+            if ($barang) {
+                $barang->stok -= $detail->qty;
+                $barang->save();
             }
         }
 
-        $pembelian->update($request->all());
-        return redirect()->route('pembelian.index')->with('success', 'Pembelian berhasil diperbarui');
+        foreach ($request->barang_id as $key => $barang_id) {
+            $subtotal = $request->qty[$key] * $request->harga[$key];
+            $total += $subtotal;
+
+            $detail = $existingDetails->get($barang_id);
+            if ($detail) {
+                $detail->update([
+                    'qty' => $request->qty[$key],
+                    'harga' => $request->harga[$key],
+                    'subtotal' => $subtotal
+                ]);
+                $existingDetails->forget($barang_id);
+            } else {
+                DetailPembelian::create([
+                    'pembelian_id' => $pembelian->id,
+                    'barang_id' => $barang_id,
+                    'qty' => $request->qty[$key],
+                    'harga' => $request->harga[$key],
+                    'subtotal' => $subtotal
+                ]);
+            }
+
+
+            $barang = Barang::find($barang_id);
+            if ($barang) {
+                $barang->stok += $request->qty[$key];
+                $barang->save();
+            }
+        }
+
+
+        foreach ($existingDetails as $detail) {
+            $barang = Barang::find($detail->barang_id);
+            if ($barang) {
+                $barang->stok -= $detail->qty;
+                $barang->save();
+            }
+            $detail->delete();
+        }
+
+
+        $pembelian->update([
+            'no_faktur' => $request->no_faktur,
+            'tanggal' => $request->tanggal,
+            'jumlah' => array_sum($request->qty),
+            'total' => $total
+        ]);
+
+        return redirect()->route('pembelian.index')->with('success', 'Pembelian berhasil diperbarui dan stok diperbarui');
     }
+
 
     public function destroy(Pembelian $pembelian)
     {
+        foreach ($pembelian->detail_pembelian as $detail) {
+            $barang = Barang::find($detail->barang_id);
+            if ($barang) {
+                $barang->stok -= $detail->qty;
+                $barang->save();
+            }
+        }
         $pembelian->detail_pembelian()->delete();
         $pembelian->delete();
+
         return redirect()->route('pembelian.index')->with('success', 'Pembelian berhasil dihapus');
     }
 }

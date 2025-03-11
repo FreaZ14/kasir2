@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2>Tambah Penjualan</h2>
+        <h2>Tambah Penjualann</h2>
         <a href="{{ route('penjualan.index') }}" class="btn btn-secondary">Kembali</a>
 
         <form action="{{ route('penjualan.store') }}" method="POST" class="mt-3">

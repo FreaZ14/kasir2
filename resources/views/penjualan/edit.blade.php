@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Pembelian')
+@section('title', 'Edit Penjualan')
 
 @section('content')
     {{-- @dump(session()->all()) --}}
-    <h2>Edit Pembelian</h2>
-    <a href="{{ route('pembelian.index') }}" class="btn btn-secondary">Kembali</a>
+    <h2>Edit Penjualan</h2>
+    <a href="{{ route('penjualan.index') }}" class="btn btn-secondary">Kembali</a>
 
-    <form action="{{ route('pembelian.update', $pembelian->id) }}" method="POST">
+    <form action="{{ route('penjualan.update', $penjualan->id) }}" method="POST">
         @csrf
         @method('PUT')
 
         <div class="mb-3">
             <label class="form-label">No Faktur</label>
-            <input type="text" name="no_faktur" class="form-control" value="{{ $pembelian->no_faktur }}" readonly>
+            <input type="text" name="no_faktur" class="form-control" value="{{ $penjualan->no_faktur }}" readonly>
         </div>
         <div class="mb-3">
             <label class="form-label">Tanggal</label>
-            <input type="date" name="tanggal" class="form-control" value="{{ $pembelian->tanggal }}" required>
+            <input type="date" name="tanggal" class="form-control" value="{{ $penjualan->tanggal }}" required>
         </div>
         <table class="table table-bordered table-striped table-responsive mt-3">
             <thead>
@@ -29,7 +29,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($pembelian->detail_pembelian as $item)
+                @foreach ($penjualan->detail_penjualan as $item)
                     <tr class="text-center">
 
                         <td><select name="barang_id[]" class="form-control" required>
@@ -51,7 +51,7 @@
 
         <div class="mb-3">
             <label class="form-label">Total Harga</label>
-            <input type="number" name="total" class="form-control" value="{{ $pembelian->total }}" required>
+            <input type="number" name="total" class="form-control" value="{{ $penjualan->total }}" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Simpan</button>
