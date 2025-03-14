@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportBarang;
+use App\Imports\BarangImport;
 use App\Models\Barang;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
+
 
 class BarangController extends Controller
 {
@@ -12,6 +17,28 @@ class BarangController extends Controller
         $barang = Barang::all();
         return view('barang.index', compact('barang'));
     }
+
+    function export_excel()
+    {
+        return Excel::download(new ExportBarang, "barang.xlsx");
+    }
+    function import_excel(Request $request)
+    {
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('barang', $namaFile);
+        Excel::import(new BarangImport, public_path('/barang/' . $namaFile));
+        return back();
+    }
+
+    function download_pdf()
+    {
+        $mpdf = new \Mpdf\Mpdf();
+        $barang = Barang::all();
+        $mpdf->WriteHTML(view('barang.export', compact('barang')));
+        $mpdf->Output('barang.pdf', 'D');
+    }
+
 
     public function create()
     {

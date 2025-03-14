@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <h2>Daftar Barang</h2>
+
         <a href="{{ route('barang.create') }}" style="margin-bottom: 10px;" class="btn btn-primary">Tambah Barang</a>
 
         @if (session('success'))
@@ -47,5 +48,33 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
-@endsection
+
+        <div class="my-3"><a class="btn btn-success" href='{{ url('barang/export/excel') }}'>Export Excel</a>
+            <a class="btn btn-danger" href='{{ url('barang/download/pdf') }}'>Export PDF</a>
+            <a href class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Import Excel</a>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Masukkan File Excel</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action={{ url('barang/import') }} method="post" enctype="multipart/form-data">
+                            <div class="modal-body">
+
+                                {{ csrf_field() }}
+                                <div class="form-group">
+                                    <input type="file" name="file" class="form-control" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                    <button type="button" class="btn btn-primary">Masukkan</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endsection

@@ -44,6 +44,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('barang', BarangController::class);
 
+    Route::get('barang/export/excel', [BarangController::class, 'export_excel']);
+    Route::post('barang/import/excel', [BarangController::class, 'import_excel']);
+
+    Route::get('barang/download/pdf', [BarangController::class, 'download_pdf']);
+
+
+
     Route::resource('pembelian', PembelianController::class);
 
 
