@@ -26,6 +26,7 @@
                     <th>Qty</th>
                     <th>Harga</th>
                     <th>Subtotal</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,18 +44,75 @@
                         </td>
                         <td><input type="number" name="harga[]" class="form-control" value="{{ $item->harga }}" required>
                         </td>
+
                         <td><input type=" number" name="subtotal[]" class="form-control" value="{{ $item->subtotal }}"</td>
+                        <td><button type="button" class="btn btn-danger remove-barang">Hapus</button></td>
                     </tr>
                 @endforeach
-            </tbody>
+            </tbody id="barang-container">
         </table>
 
         <div class="mb-3">
             <label class="form-label">Total Harga</label>
-            <input type="number" name="total" class="form-control" value="{{ $pembelian->total }}" required>
+            <input type="number" name="total" id="subtotal" class="form-control" value="{{ $pembelian->total }}"
+                required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Simpan</button>
+        <button type="button" id="tambah-barang" class="btn btn-success mt-0">Tambah Barang</button>
+        <button style=" margin-left: 600px;" type="submit" class="btn btn-primary">Simpan</button>
     </form>
 
+    <script>
+        function calculateSubtotal() {
+            let subtotals = document.querySelectorAll('input[name="harga[]"]');
+            let qtys = document.querySelectorAll('input[name="qty[]"]');
+            let total = 0;
+            subtotals.forEach((input, index) => {
+                total += parseFloat(input.value) * parseFloat(qtys[index].value) || 0;
+            });
+            document.getElementById('subtotal').value = total;
+        }
+
+        document.getElementById('tambah-barang').addEventListener('click', function() {
+            let container = document.getElementById('barang-container');
+            let tr = document.createElement('tr');
+            tr.classList.add('barang-item');
+            tr.innerHTML = `
+            <td>
+                <select name="barang_id[]" class="form-control" required>
+                    <option value="">Pilih Barang</option>
+                    @foreach ($barang as $item)
+                        <option data-harga="{{ $item->harga_jual }}" value="{{ $item->id }}">{{ $item->nama }}</option>
+                    @endforeach
+                </select>
+            </td>
+            <td><input type="number" name="qty[]" class="form-control" placeholder="Jumlah" required></td>
+            <td><input type="number" name="harga[]" class="form-control" placeholder="Harga" required></td>
+            <td><button type="button" class="btn btn-danger remove-barang">Hapus</button></td>
+        `;
+            container.appendChild(tr);
+            calculateSubtotal();
+        });
+
+        document.addEventListener('change', function(e) {
+            if (e.target.tagName === 'SELECT') {
+                let harga = e.target.options[e.target.selectedIndex].getAttribute('data-harga');
+                e.target.parentNode.nextElementSibling.nextElementSibling.firstElementChild.value = harga;
+                calculateSubtotal();
+            }
+        });
+
+        document.addEventListener('input', function(e) {
+            if (e.target.tagName === 'INPUT' && e.target.name === 'qty[]') {
+                calculateSubtotal();
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('remove-barang')) {
+                e.target.parentElement.parentElement.remove();
+                calculateSubtotal();
+            }
+        });
+    </script>
 @endsection

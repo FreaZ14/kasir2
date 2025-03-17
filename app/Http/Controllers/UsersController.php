@@ -46,6 +46,8 @@ class UsersController extends Controller
 
         $datarow = $request->all();
 
+        $datarow['password'] = bcrypt($request->password);
+
         $user = Users::create($datarow);
         return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan');
     }

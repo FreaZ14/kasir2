@@ -11,19 +11,19 @@
 
         <li class="nav-heading">Pages</li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link {{ request()->is('/contoh-1') ? 'active' : 'collapsed' }}" href="/contoh-1">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
             </a>
-        </li><!-- End Profile Page Nav -->
+        </li><!-- End Profile Page Nav --> --}}
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link {{ request()->is('/contoh-2') ? 'active' : 'collapsed' }}" href="/contoh-2">
                 <i class="bi bi-question-circle"></i>
                 <span>F.A.Q</span>
             </a>
-        </li><!-- End F.A.Q Page Nav -->
+        </li><!-- End F.A.Q Page Nav --> --}}
 
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('users*') ? 'active' : 'collapsed' }}"
