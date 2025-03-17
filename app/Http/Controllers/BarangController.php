@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ExportBarang;
-use App\Imports\BarangImport;
+use App\Imports\ImportBarang;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -22,15 +22,19 @@ class BarangController extends Controller
     {
         return Excel::download(new ExportBarang, "barang.xlsx");
     }
-    function import_excel(Request $request)
-    {
-        $file = $request->file('file');
-        $namaFile = $file->getClientOriginalName();
-        $file->move('barang', $namaFile);
-        Excel::import(new BarangImport, public_path('/barang/' . $namaFile));
-        return back();
-    }
 
+
+
+    public function import_excel(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,csv',
+        ]);
+
+        Excel::import(new ImportBarang, $request->file('file'));
+
+        return redirect()->route('barang.index')->with('success', 'Data berhasil diimport!');
+    }
     function download_pdf()
     {
         $mpdf = new \Mpdf\Mpdf();
