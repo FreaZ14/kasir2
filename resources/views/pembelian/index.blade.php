@@ -1,5 +1,19 @@
 @extends('layouts.app')
 
+@section('title', 'Pembelian')
+
+@section('breadcrumb')
+    <div class="pagetitle">
+        <h1>Pembelian</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                <li class="breadcrumb-item active">Pembelian</li>
+            </ol>
+        </nav>
+    </div>
+@endsection
+
 @section('content')
     <div class="container">
         <h2>Daftar Pembelian</h2>
@@ -11,7 +25,7 @@
 
         <table class="table table-bordered table-striped table-responsivemt-3">
             <thead>
-                <tr class="text-center">
+                <tr class="text-center table-success">
                     <th>No. Faktur</th>
                     <th>Tanggal</th>
                     <th>Jumlah</th>

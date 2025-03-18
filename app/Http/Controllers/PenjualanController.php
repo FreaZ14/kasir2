@@ -18,8 +18,9 @@ class PenjualanController extends Controller
     public function create()
     {
         $barang = Barang::all();
-        $noFaktur = 'PB-' . date('YmdHis');
-        return view('penjualan.create', compact('barang', 'noFaktur'));
+        $noFaktur = 'PJ-' . date('YmdHis');
+        $tanggal = date('Y-m-d');
+        return view('penjualan.create', compact('barang', 'noFaktur', 'tanggal'));
     }
 
     public function show(Penjualan $penjualan)

@@ -19,7 +19,8 @@ class PembelianController extends Controller
     {
         $barang = Barang::all();
         $noFaktur = 'PB-' . date('YmdHis');
-        return view('pembelian.create', compact('barang', 'noFaktur'));
+        $tanggal = date('Y-m-d');
+        return view('pembelian.create', compact('barang', 'noFaktur', 'tanggal'));
     }
 
     public function show(Pembelian $pembelian)

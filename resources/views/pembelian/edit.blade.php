@@ -25,11 +25,10 @@
                     <th>Nama Barang</th>
                     <th>Qty</th>
                     <th>Harga</th>
-                    <th>Subtotal</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="edit-container">
                 @foreach ($pembelian->detail_pembelian as $item)
                     <tr class="text-center">
 
@@ -42,14 +41,14 @@
                             </select></td>
                         <td> <input type="number" name="qty[]" class="form-control" value="{{ $item->qty }}" required>
                         </td>
-                        <td><input type="number" name="harga[]" class="form-control" value="{{ $item->harga }}" required>
+                        <td><input type="number" name="harga[]" class="form-control" value="{{ $item->harga }}" required
+                                readonly>
                         </td>
 
-                        <td><input type=" number" name="subtotal[]" class="form-control" value="{{ $item->subtotal }}"</td>
                         <td><button type="button" class="btn btn-danger remove-barang">Hapus</button></td>
                     </tr>
                 @endforeach
-            </tbody id="barang-container">
+            </tbody>
         </table>
 
         <div class="mb-3">
@@ -58,7 +57,7 @@
                 required>
         </div>
 
-        <button type="button" id="tambah-barang" class="btn btn-success mt-0">Tambah Barang</button>
+        <button type="button" id="tambah-barang2" class="btn btn-success mt-0">Tambah Barang</button>
         <button style=" margin-left: 600px;" type="submit" class="btn btn-primary">Simpan</button>
     </form>
 
@@ -73,10 +72,10 @@
             document.getElementById('subtotal').value = total;
         }
 
-        document.getElementById('tambah-barang').addEventListener('click', function() {
-            let container = document.getElementById('barang-container');
+        document.getElementById('tambah-barang2').addEventListener('click', function() {
+            let container = document.getElementById('edit-container');
             let tr = document.createElement('tr');
-            tr.classList.add('barang-item');
+            tr.classList.add('edit-barang-item');
             tr.innerHTML = `
             <td>
                 <select name="barang_id[]" class="form-control" required>
@@ -88,7 +87,9 @@
             </td>
             <td><input type="number" name="qty[]" class="form-control" placeholder="Jumlah" required></td>
             <td><input type="number" name="harga[]" class="form-control" placeholder="Harga" required></td>
-            <td><button type="button" class="btn btn-danger remove-barang">Hapus</button></td>
+            <td class="text-center"><button type="button" class="btn btn-danger remove-barang">Hapus</button></td>
+            
+            
         `;
             container.appendChild(tr);
             calculateSubtotal();

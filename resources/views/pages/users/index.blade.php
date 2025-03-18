@@ -27,14 +27,14 @@
                 <div class="card-body">
                     <table class="table table-striped">
                         <thead>
-                            <tr>
+                            <tr class="text-center table-primary table-striped">
                                 <th>Id</th>
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                             @foreach ($users as $user)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>

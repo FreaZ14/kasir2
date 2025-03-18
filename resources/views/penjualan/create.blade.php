@@ -13,7 +13,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Tanggal</label>
-                <input type="date" name="tanggal" class="form-control" required>
+                <input type="date" name="tanggal" class="form-control" value="{{ date('Y-m-d') }}" required>
             </div>
 
             <table class="table table-bordered">
@@ -37,7 +37,8 @@
                             </select>
                         </td>
                         <td><input type="number" name="qty[]" class="form-control" placeholder="Jumlah" required></td>
-                        <td><input type="number" name="harga[]" class="form-control" placeholder="Harga" required></td>
+                        <td><input type="number" name="harga[]" class="form-control" placeholder="Harga" required readonly>
+                        </td>
                         <td><button type="button" class="btn btn-danger remove-barang">Hapus</button></td>
                     </tr>
                 </tbody>
@@ -76,7 +77,7 @@
                 </select>
             </td>
             <td><input type="number" name="qty[]" class="form-control" placeholder="Jumlah" required></td>
-            <td><input type="number" name="harga[]" class="form-control" placeholder="Harga" required></td>
+            <td><input type="number" name="harga[]" class="form-control" placeholder="Harga" required readonly></td>
             <td><button type="button" class="btn btn-danger remove-barang">Hapus</button></td>
         `;
             container.appendChild(tr);

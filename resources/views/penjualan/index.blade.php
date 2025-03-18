@@ -1,5 +1,18 @@
 @extends('layouts.app')
 
+@section('title', 'Penjualan')
+
+@section('breadcrumb')
+    <div class="pagetitle">
+        <h1>Penjualan</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                <li class="breadcrumb-item active">Penjualan</li>
+            </ol>
+        </nav>
+    </div>
+@endsection
 @section('content')
     <div class="container">
         <h2>Daftar Penjualan</h2>
@@ -9,9 +22,9 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <table class="table table-bordered table-striped table-responsivemt-3">
+        <table class="table table-bordered table-striped table-responsive mt-3">
             <thead>
-                <tr class="text-center">
+                <tr class="text-center table-success">
                     <th>No. Faktur</th>
                     <th>Tanggal</th>
                     <th>Jumlah</th>

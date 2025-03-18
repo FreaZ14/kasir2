@@ -31,20 +31,17 @@
             <tbody id="edit-container">
                 @foreach ($penjualan->detail_penjualan as $item)
                     <tr class="text-center">
-
                         <td><select name="barang_id[]" class="form-control" required>
                                 <option value="">Pilih Barang</option>
                                 @foreach ($barang as $b)
                                     <option {{ $b->id == $item->barang_id ? 'selected' : '' }} value="{{ $b->id }}">
                                         {{ $b->nama }}</option>
-                                    <option data-harga="{{ $item->harga_jual }}" value="{{ $item->id }}">
-                                        {{ $item->nama }}</option>
                                 @endforeach
                             </select></td>
-                        <td> <input type="number" name="qty[]" class="form-control" value="{{ $item->qty }}"
-                                required>
+                        <td> <input type="number" name="qty[]" class="form-control" value="{{ $item->qty }}" required>
                         </td>
-                        <td><input type="number" name="harga[]" class="form-control" value="{{ $item->harga }}" required>
+                        <td><input type="number" name="harga[]" class="form-control" value="{{ $item->harga }}" required
+                                readonly>
                         </td>
                         <td><button type="button" class="btn btn-danger remove-barang">Hapus</button></td>
 
@@ -89,7 +86,7 @@
                 </select>
             </td>
             <td><input type="number" name="qty[]" class="form-control" placeholder="Jumlah" required></td>
-            <td><input type="number" name="harga[]" class="form-control" placeholder="Harga" required></td>
+            <td><input type="number" name="harga[]" class="form-control" placeholder="Harga" required readonly></td>
             <td class="text-center"><button type="button" class="btn btn-danger remove-barang">Hapus</button></td>
             
             

@@ -42,23 +42,23 @@ Route::middleware(['auth'])->group(function () {
         return view('contoh2');
     });
 
-    Route::resource('barang', BarangController::class);
+    Route::resource('barang', BarangController::class)->middleware('admin');
 
-    Route::get('barang/export/excel', [BarangController::class, 'export_excel']);
-    Route::post('/barang/import', [BarangController::class, 'import_excel'])->name('barang.import');
+    Route::get('barang/export/excel', [BarangController::class, 'export_excel'])->middleware('admin');
+    Route::post('/barang/import', [BarangController::class, 'import_excel'])->name('barang.import')->middleware('admin');
 
 
     //Route::post('barang/import/excel', [BarangController::class, 'import_excel']);
 
-    Route::get('barang/download/pdf', [BarangController::class, 'download_pdf']);
+    Route::get('barang/download/pdf', [BarangController::class, 'download_pdf'])->middleware('admin');
 
 
 
-    Route::resource('pembelian', PembelianController::class);
+    Route::resource('pembelian', PembelianController::class)->middleware('admin');
 
 
     Route::resource('penjualan', PenjualanController::class);
-    Route::resource('users', UsersController::class);
+    Route::resource('users', UsersController::class)->middleware('admin');
 });
 
 

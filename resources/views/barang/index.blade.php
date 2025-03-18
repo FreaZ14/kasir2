@@ -1,5 +1,18 @@
 @extends('layouts.app')
 
+@section('title', 'Barang')
+
+@section('breadcrumb')
+    <div class="pagetitle">
+        <h1>Barang</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                <li class="breadcrumb-item active">Barang</li>
+            </ol>
+        </nav>
+    </div>
+@endsection
 @section('content')
     <div class="container">
         <h2>Daftar Barang</h2>
@@ -12,7 +25,7 @@
 
         <table class="table table-bordered mt-3">
             <thead>
-                <tr>
+                <tr class="table-primary">
                     <th>Nama</th>
                     <th>Stok</th>
                     <th>Harga Jual</th>

@@ -19,4 +19,10 @@
 @endsection
 @section('content')
     <h5>Hello {{ auth()->user()->name ?? '-' }}</h5>
+
+    {{-- <a href="{{ route('barang.index') }}" class="btn btn-primary">Barang</a>
+    <a href="{{ route('penjualan.index') }}" class="btn btn-primary">Penjualan</a>
+    <a href="{{ route('pembelian.index') }}" class="btn btn-primary">Pembelian</a> --}}
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
 @endsection
