@@ -37,7 +37,7 @@
                             </select>
                         </td>
                         <td><input type="number" name="qty[]" class="form-control" placeholder="Jumlah" required></td>
-                        <td><input type="number" name="harga[]" class="form-control" placeholder="Harga" required readonly>
+                        <td><input type="number" name="harga[]" class="form-control" placeholder="Harga" required>
                         </td>
                         <td><button type="button" class="btn btn-danger remove-barang">Hapus</button></td>
                     </tr>

@@ -22,9 +22,9 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <table class="table table-bordered table-striped table-responsive mt-3">
+        <table class="table table-bordered table-striped table-responsive mt-1">
             <thead>
-                <tr class="text-center table-success">
+                <tr class="text-center table-dark">
                     <th>No. Faktur</th>
                     <th>Tanggal</th>
                     <th>Jumlah</th>

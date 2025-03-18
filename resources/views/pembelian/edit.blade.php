@@ -41,8 +41,7 @@
                             </select></td>
                         <td> <input type="number" name="qty[]" class="form-control" value="{{ $item->qty }}" required>
                         </td>
-                        <td><input type="number" name="harga[]" class="form-control" value="{{ $item->harga }}" required
-                                readonly>
+                        <td><input type="number" name="harga[]" class="form-control" value="{{ $item->harga }}" required>
                         </td>
 
                         <td><button type="button" class="btn btn-danger remove-barang">Hapus</button></td>

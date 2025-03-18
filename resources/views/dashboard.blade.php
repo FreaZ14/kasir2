@@ -18,11 +18,56 @@
     </div>
 @endsection
 @section('content')
-    <h5>Hello {{ auth()->user()->name ?? '-' }}</h5>
+    <div class="row">
+        <!-- Pembelian Terakhir -->
+        <div class="col-md-6">
+            <h5>Pembelian Terakhir</h5>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr class="text-center table-primary">
+                        <th>No Faktur</th>
+                        <th>Tanggal</th>
+                        <th>Jumlah</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($pembelian as $item)
+                        <tr>
+                            <td>{{ $item->no_faktur }}</td>
+                            <td>{{ $item->created_at->format('d/m/Y') }}</td>
+                            <td>{{ $item->jumlah }}</td>
+                            <td>Rp {{ number_format($item->total, 0, ',', '.') }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
-    {{-- <a href="{{ route('barang.index') }}" class="btn btn-primary">Barang</a>
-    <a href="{{ route('penjualan.index') }}" class="btn btn-primary">Penjualan</a>
-    <a href="{{ route('pembelian.index') }}" class="btn btn-primary">Pembelian</a> --}}
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+        <!-- Penjualan Terakhir -->
+        <div class="col-md-6">
+            <h5>Penjualan Terakhir</h5>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr class="text-center table-primary">
+                        <th>No Faktur</th>
+                        <th>Tanggal</th>
+                        <th>Jumlah</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($penjualan as $item)
+                        <tr>
+                            <td>{{ $item->no_faktur }}</td>
+                            <td>{{ $item->created_at->format('d/m/Y') }}</td>
+                            <td>{{ $item->jumlah }}</td>
+                            <td>Rp {{ number_format($item->total, 0, ',', '.') }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 @endsection

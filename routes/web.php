@@ -9,6 +9,7 @@ use App\Http\Controllers\DetailPembelianController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\DashboardController;
 
 
 
@@ -30,9 +31,8 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    });
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
     Route::get('/contoh-1', function () {
         return view('contoh1');
