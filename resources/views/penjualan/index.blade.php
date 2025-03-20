@@ -55,5 +55,6 @@
                 @endforeach
             </tbody>
         </table>
+        <img src="https://media.tenor.com/7lHdnabfyTQAAAAj/herta-kurukuru.gif" width="40" height="20" alt="">
     </div>
 @endsection

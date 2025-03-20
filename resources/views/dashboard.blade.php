@@ -2,8 +2,12 @@
 @section('title', 'Dashboard')
 @section('css')
     <style>
-        h5 {
+        h4 {
             color: red !important;
+        }
+
+        h5 {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;
         }
     </style>
 @section('breadcrumb')
@@ -18,56 +22,55 @@
     </div>
 @endsection
 @section('content')
-    <div class="row">
-        <!-- Pembelian Terakhir -->
-        <div class="col-md-6">
-            <h5>Pembelian Terakhir</h5>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr class="text-center table-primary">
-                        <th>No Faktur</th>
-                        <th>Tanggal</th>
-                        <th>Jumlah</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($pembelian as $item)
-                        <tr>
-                            <td>{{ $item->no_faktur }}</td>
-                            <td>{{ $item->created_at->format('d/m/Y') }}</td>
-                            <td>{{ $item->jumlah }}</td>
-                            <td>Rp {{ number_format($item->total, 0, ',', '.') }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Penjualan Terakhir -->
-        <div class="col-md-6">
-            <h5>Penjualan Terakhir</h5>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr class="text-center table-primary">
-                        <th>No Faktur</th>
-                        <th>Tanggal</th>
-                        <th>Jumlah</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($penjualan as $item)
-                        <tr>
-                            <td>{{ $item->no_faktur }}</td>
-                            <td>{{ $item->created_at->format('d/m/Y') }}</td>
-                            <td>{{ $item->jumlah }}</td>
-                            <td>Rp {{ number_format($item->total, 0, ',', '.') }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Data Kasir</h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Barang</h5>
+                            <p class="card-text">{{ $barang->count() }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Pembelian</h5>
+                            <p class="card-text">{{ $pembelian->count() }}</p>
+                        </div>
+                    </div>
+                    <div style="margin-left:-160px; margin-right: 160px;">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Pembelian</h5>
+                                <p class="card-text">Rp.{{ number_format($pembelian->sum('total'), 0, ',', '.') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Penjualan</h5>
+                            <p class="card-text">{{ $penjualan->count() }}</p>
+                        </div>
+                    </div>
+                    <div style="margin-left:-160px; margin-right: 160px;">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Penjualan</h5>
+                                <p class="card-text">Rp.{{ number_format($penjualan->sum('total'), 0, ',', '.') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    </div>
+    <img src="https://media.tenor.com/7lHdnabfyTQAAAAj/herta-kurukuru.gif" width="40" height="20" alt="">
 
+    </div>
 @endsection

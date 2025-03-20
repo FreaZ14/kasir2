@@ -17,9 +17,7 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
         if (auth()->user()->role_id != 'admin') {
-            abort(403);
-        } else {
-            return $next($request);
+            return redirect('dashboard');
         }
         return $next($request);
     }

@@ -2,8 +2,9 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
-            <img src="assets/img/logo.png" alt="">
-            <span class="d-none d-lg-block">Aplikasi Kasir</span>
+            <img src="https://static.vecteezy.com/system/resources/previews/047/055/574/non_2x/young-male-cashier-standing-behind-counter-at-the-checkout-working-in-supermarket-vector.jpg"
+                alt="">
+            <span style="color: floralwhite" class="d-none d-lg-block">MyKasir</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
