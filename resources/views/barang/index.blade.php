@@ -79,7 +79,7 @@
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <div class="form-group">
-                            <input type="file" name="file" class="form-control" required>
+                            <input type="file" name="file" class="form-control" accept =".xlsx, .xls, .csv" required>
                         </div>
                     </div>
                     <div class="modal-footer">

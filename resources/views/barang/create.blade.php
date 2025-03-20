@@ -31,7 +31,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Gambar</label>
-                <input type="file" name="gambar" class="form-control">
+                <input type="file" name="gambar" class="form-control" accept=".png, .jpg, .jfif">
             </div>
             <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
