@@ -17,15 +17,15 @@
     <div class="container">
         <h2>Daftar Penjualan</h2>
         <a href="{{ route('penjualan.create') }}" style="margin-bottom: 40px;" class="btn btn-primary">Tambah Penjualan</a>
-
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
+
         <table class="table table-bordered table-striped table-responsive mt-1">
             <thead>
                 <tr class="text-center table-dark">
-                    <th>No. Faktur</th>
+                    <th>No.Faktur</th>
                     <th>Tanggal</th>
                     <th>Jumlah</th>
                     <th>Total</th>
@@ -50,11 +50,16 @@
                                 <button type="submit" class="btn btn-danger btn-sm"
                                     onclick="return confirm('Hapus penjualan ini?')">Hapus</button>
                             </form>
+
+                            <a href="{{ route('penjualan.print', $item->id) }}" class="btn btn-primary">Print Struk</a>
+
                         </td>
                     </tr>
                 @endforeach
             </tbody>
+
         </table>
+
         <img src="https://media.tenor.com/7lHdnabfyTQAAAAj/herta-kurukuru.gif" width="40" height="20" alt="">
     </div>
 @endsection

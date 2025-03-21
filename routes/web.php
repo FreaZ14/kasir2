@@ -10,6 +10,7 @@ use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PrintController;
 
 
 
@@ -58,6 +59,8 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::resource('penjualan', PenjualanController::class);
+    Route::get('/penjualan/{id}/print', [PrintController::class, 'printStruk'])->name('penjualan.print');
+
     Route::resource('users', UsersController::class)->middleware('admin');
 });
 
