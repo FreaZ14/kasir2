@@ -25,7 +25,7 @@
         <table class="table table-bordered table-striped table-responsive mt-1">
             <thead>
                 <tr class="text-center table-dark">
-                    <th>No.Faktur</th>
+                    <th>No. Faktur</th>
                     <th>Tanggal</th>
                     <th>Jumlah</th>
                     <th>Total</th>
@@ -51,7 +51,11 @@
                                     onclick="return confirm('Hapus penjualan ini?')">Hapus</button>
                             </form>
 
-                            <a href="{{ route('penjualan.print', $item->id) }}" class="btn btn-primary">Print Struk</a>
+                            <a href="{{ route('penjualan.printbaru', $item->id) }}" class="btn btn-sm btn-primary"
+                                target="_blank">
+                                Print Struk
+                            </a>
+
 
                         </td>
                     </tr>

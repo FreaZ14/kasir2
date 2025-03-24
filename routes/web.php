@@ -60,7 +60,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('penjualan', PenjualanController::class);
     Route::get('/penjualan/{id}/print', [PrintController::class, 'printStruk'])->name('penjualan.print');
-
+    Route::get('/print-penjualan/{penjualan}', [PrintController::class, 'printStrukBaru'])->name('penjualan.printbaru');
     Route::resource('users', UsersController::class)->middleware('admin');
 });
 
