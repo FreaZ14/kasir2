@@ -19,9 +19,19 @@
 
         <a href="{{ route('barang.create') }}" style="margin-bottom: 10px;" class="btn btn-primary">Tambah Barang</a>
 
+
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
+
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <form action="/barang" method="GET">
+                    <input type="search" value="{{ request('search') }}" id="inputPassword6" name="search"
+                        class="form-control" aria-describedby="passwordHelpInline">
+                </form>
+            </div>
+        </div>
 
         <table class="table table-bordered mt-3">
             <thead>

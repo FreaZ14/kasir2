@@ -12,12 +12,19 @@ use Illuminate\Support\Facades\Storage;
 
 class BarangController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $barang = Barang::all();
+
+        if ($request->has('search')) {
+            $barang = Barang::where('nama', 'like', '%' . $request->search . '%')->get();
+        } else {
+            $barang = Barang::all();
+        }
+
+
+        // $barang = Barang::all();
         return view('barang.index', compact('barang'));
     }
-
     function export_excel()
     {
         return Excel::download(new ExportBarang, "barang.xlsx");
