@@ -34,8 +34,35 @@ class PenjualanController extends Controller
         $request->validate([
             'no_faktur' => 'required|unique:Penjualan',
             'tanggal' => 'required|date',
-            'barang_id' => 'required|array',
-            'qty' => 'required|array',
+            'barang_id' => [
+                'required',
+                'array',
+                function ($attribute, $value, $fail) use ($request) {
+                    foreach ($value as $key => $barang_id) {
+                        $barang = Barang::find($barang_id);
+                        if (!$barang) {
+                            $fail('Barang tidak ditemukan');
+                        }
+                        if ($barang->stok == 0) {
+                            $fail('Barang tidak memiliki stok');
+                        }
+                        if ($request->qty[$key] > 1000) {
+                            $fail('Jumlah barang tidak boleh lebih dari 1000');
+                        }
+                    }
+                },
+            ],
+            'qty' => [
+                'required',
+                'array',
+                function ($attribute, $value, $fail) use ($request) {
+                    foreach ($value as $key => $qty) {
+                        if ($qty > 1000) {
+                            $fail('Jumlah barang tidak boleh lebih dari 1000');
+                        }
+                    }
+                },
+            ],
             'harga' => 'required|array'
         ]);
 
@@ -82,10 +109,36 @@ class PenjualanController extends Controller
         $request->validate([
             'no_faktur' => 'required|unique:Penjualan,no_faktur,' . $penjualan->id,
             'tanggal' => 'required|date',
-            'barang_id' => 'required|array',
-            'qty' => 'required|array',
-            'harga' => 'required|array',
-            'total' => 'required'
+            'barang_id' => [
+                'required',
+                'array',
+                function ($attribute, $value, $fail) use ($request) {
+                    foreach ($value as $key => $barang_id) {
+                        $barang = Barang::find($barang_id);
+                        if (!$barang) {
+                            $fail('Barang tidak ditemukan');
+                        }
+                        if ($request->qty[$key] > $barang->stok) {
+                            $fail('Barang tidak memiliki stok yang cukup');
+                        }
+                        if ($request->qty[$key] > 1000) {
+                            $fail('Jumlah barang tidak boleh lebih dari 1000');
+                        }
+                    }
+                },
+            ],
+            'qty' => [
+                'required',
+                'array',
+                function ($attribute, $value, $fail) use ($request) {
+                    foreach ($value as $key => $qty) {
+                        if ($qty > 1000) {
+                            $fail('Jumlah barang tidak boleh lebih dari 1000');
+                        }
+                    }
+                },
+            ],
+            'harga' => 'required|array'
         ]);
 
         $total = 0;

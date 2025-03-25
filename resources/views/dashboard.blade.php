@@ -34,40 +34,47 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Pembelian</h5>
-                            <p class="card-text">{{ $pembelian->count() }}</p>
+                @if (auth()->user()->id != 2)
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Pembelian</h5>
+                                <p class="card-text">{{ $pembelian->count() }}</p>
+                            </div>
                         </div>
-                    </div>
+                @endif
+                @if (auth()->user()->id != 2)
                     <div style="margin-left:-160px; margin-right: 160px;">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Total Pembelian</h5>
-                                <p class="card-text">Rp.{{ number_format($pembelian->sum('total'), 0, ',', '.') }}</p>
+                                <p class="card-text">Rp.{{ number_format($pembelian->sum('total'), 0, ',', '.') }}
+                                </p>
                             </div>
                         </div>
+                    </div>
+                @endif
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Penjualan</h5>
+                        <p class="card-text">{{ $penjualan->count() }}</p>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Penjualan</h5>
-                            <p class="card-text">{{ $penjualan->count() }}</p>
-                        </div>
-                    </div>
+                @if (auth()->user()->id != 2)
                     <div style="margin-left:-160px; margin-right: 160px;">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Total Penjualan</h5>
-                                <p class="card-text">Rp.{{ number_format($penjualan->sum('total'), 0, ',', '.') }}</p>
-                            </div>
-                        </div>
+                @endif
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Penjualan</h5>
+                        <p class="card-text">Rp.{{ number_format($penjualan->sum('total'), 0, ',', '.') }}</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     </div>
     <img src="https://media.tenor.com/7lHdnabfyTQAAAAj/herta-kurukuru.gif" width="40" height="20" alt="">
