@@ -28,14 +28,14 @@
             <div class="col-auto">
                 <form action="/barang" method="GET">
                     <input type="search" value="{{ request('search') }}" id="inputPassword6" name="search"
-                        class="form-control" aria-describedby="passwordHelpInline">
+                        class="form-control border border-dark" aria-describedby="passwordHelpInline">
                 </form>
             </div>
         </div>
 
         <table class="table table-bordered mt-3">
             <thead>
-                <tr class="table-primary">
+                <tr class="table-dark">
                     <th>Nama</th>
                     <th>Stok</th>
                     <th>Harga Jual</th>
@@ -74,6 +74,7 @@
 
         <div class="my-3"><a class="btn btn-success" href='{{ url('barang/export/excel') }}'>Export Excel</a>
             <a class="btn btn-danger" href='{{ url('barang/download/pdf') }}'>Export PDF</a>
+
             <a href class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Import Excel</a>
         </div>
     </div>
